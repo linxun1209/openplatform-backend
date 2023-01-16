@@ -1,0 +1,8 @@
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+xingchen:
+  client:
+    access-key: e6b7ebd4ded757dc3879d2007ca572e6
+    secret-key: a2eb04eeafffe997191b0a618487ce7b
