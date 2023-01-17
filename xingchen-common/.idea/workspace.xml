@@ -4,7 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eb43359-b4f3-4438-bff9-b71f616ebcb8" name="Default Changelist" comment="" />
+    <list default="true" id="9eb43359-b4f3-4438-bff9-b71f616ebcb8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/xingchen-common.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api-interface/src/main/java/com/xingchen/apiinterface/controller/NameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api-interface/src/main/java/com/xingchen/apiinterface/controller/NameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/mapper/UserInterfaceInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/mapper/UserInterfaceInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/service/UserInterfaceInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/service/UserInterfaceInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/service/impl/UserInterfaceInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/service/impl/UserInterfaceInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/service/impl/inner/InnerInterfaceInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/service/impl/inner/InnerInterfaceInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/service/impl/inner/InnerUserInterfaceInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/service/impl/inner/InnerUserInterfaceInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/service/impl/inner/InnerUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../openplatform/src/main/java/com/xingchen/openplatform/service/impl/inner/InnerUserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sdk-xingchen/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sdk-xingchen/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xingchen/common/service/InnerInterfaceInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xingchen/common/service/InnerInterfaceInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xingchen/common/service/InnerUserInterfaceInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xingchen/common/service/InnerUserInterfaceInfoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xingchen/common/service/InnerUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xingchen/common/service/InnerUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xingchen-common-0.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/xingchen-common-0.0.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen-gataway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../xingchen-gataway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen-gataway/src/main/java/com/xingchen/openplatform/CustomGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../xingchen-gataway/src/main/java/com/xingchen/openplatform/CustomGlobalFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen-gataway/src/main/java/com/xingchen/openplatform/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../xingchen-gataway/src/main/java/com/xingchen/openplatform/DemoApplication.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +35,9 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -23,6 +49,7 @@
     </option>
   </component>
   <component name="ProjectId" id="2KPXuGP085VICFHQKjoujrVQKiX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -30,27 +57,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\后端大佬成才之路\星辰接口服务平台\xingchen-common\src\main\java" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -61,10 +79,24 @@
       <option name="presentableId" value="Default" />
       <updated>1673877413696</updated>
       <workItem from="1673877414840" duration="1800000" />
+      <workItem from="1673922391591" duration="1547000" />
+      <workItem from="1673924453122" duration="3708000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

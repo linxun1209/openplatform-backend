@@ -4,6 +4,7 @@ import com.xingchen.common.model.entity.InterfaceInfo;
 
 /**
  *
+ * @author xing'chen
  */
 public interface InnerInterfaceInfoService {
 

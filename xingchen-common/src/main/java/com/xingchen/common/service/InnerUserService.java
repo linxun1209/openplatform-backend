@@ -6,7 +6,7 @@ import com.xingchen.common.model.entity.User;
 /**
  * 用户服务
  *
- * @author yupi
+ * @author xing'chen
  */
 public interface InnerUserService {
 

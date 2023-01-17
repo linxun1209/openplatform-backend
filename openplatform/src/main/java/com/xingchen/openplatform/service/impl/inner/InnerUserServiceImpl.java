@@ -18,7 +18,6 @@ public class InnerUserServiceImpl implements InnerUserService {
     @Resource
     private UserMapper userMapper;
 
-
     @Override
     public User getInvokeUser(String accessKey) {
         if (StringUtils.isAnyBlank(accessKey)) {
@@ -26,6 +25,17 @@ public class InnerUserServiceImpl implements InnerUserService {
         }
         QueryWrapper<User> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("accessKey",accessKey);
-        return userMapper.selectMapsPage(queryWrapper);
+        return userMapper.selectOne(queryWrapper);
     }
+
+
+//    @Override
+//    public User getInvokeUser(String accessKey) {
+//        if (StringUtils.isAnyBlank(accessKey)) {
+//            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+//        }
+//        QueryWrapper<User> queryWrapper=new QueryWrapper<>();
+//        queryWrapper.eq("accessKey",accessKey);
+//        return userMapper.selectMapsPage(queryWrapper);
+//    }
 }

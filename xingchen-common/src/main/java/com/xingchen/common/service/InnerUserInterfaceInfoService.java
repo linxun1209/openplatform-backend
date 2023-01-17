@@ -2,6 +2,7 @@ package com.xingchen.common.service;
 
 /**
  *
+ * @author xing'chen
  */
 public interface InnerUserInterfaceInfoService {
 
