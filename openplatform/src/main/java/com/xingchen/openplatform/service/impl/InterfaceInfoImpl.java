@@ -2,10 +2,10 @@ package com.xingchen.openplatform.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xingchen.common.model.entity.InterfaceInfo;
 import com.xingchen.openplatform.common.ErrorCode;
 import com.xingchen.openplatform.exception.BusinessException;
 import com.xingchen.openplatform.mapper.InterfaceInfoMapper;
-import com.xingchen.openplatform.model.entity.InterfaceInfo;
 import com.xingchen.openplatform.service.InterfaceInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;

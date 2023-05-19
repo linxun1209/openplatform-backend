@@ -1,10 +1,10 @@
 package com.xingchen.openplatform.aop;
 
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.xingchen.common.model.entity.User;
 import com.xingchen.openplatform.annotation.AuthCheck;
 import com.xingchen.openplatform.common.ErrorCode;
 import com.xingchen.openplatform.exception.BusinessException;
-import com.xingchen.openplatform.model.entity.User;
 import com.xingchen.openplatform.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

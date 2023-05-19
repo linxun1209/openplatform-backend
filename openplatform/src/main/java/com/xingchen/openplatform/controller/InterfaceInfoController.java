@@ -3,6 +3,8 @@ package com.xingchen.openplatform.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.gson.Gson;
+import com.xingchen.common.model.entity.InterfaceInfo;
+import com.xingchen.common.model.entity.User;
 import com.xingchen.openplatform.annotation.AuthCheck;
 import com.xingchen.openplatform.common.*;
 import com.xingchen.openplatform.constant.CommonConstant;
@@ -11,8 +13,6 @@ import com.xingchen.openplatform.model.dto.interfaceinfo.InterfaceInfoAddRequest
 import com.xingchen.openplatform.model.dto.interfaceinfo.InterfaceInfoInvokeRequest;
 import com.xingchen.openplatform.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
 import com.xingchen.openplatform.model.dto.interfaceinfo.InterfaceInfoUpdateRequest;
-import com.xingchen.openplatform.model.entity.InterfaceInfo;
-import com.xingchen.openplatform.model.entity.User;
 import com.xingchen.openplatform.model.enums.InterfaceInfoStatusEnum;
 import com.xingchen.openplatform.service.InterfaceInfoService;
 import com.xingchen.openplatform.service.UserService;

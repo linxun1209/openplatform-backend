@@ -2,22 +2,12 @@ package com.xingchen.openplatform.service.impl;
 
 
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.xingchen.openplatform.common.ErrorCode;
-import com.xingchen.openplatform.exception.BusinessException;
-import com.xingchen.openplatform.model.entity.InterfaceInfo;
-import com.xingchen.openplatform.model.entity.UserInterfaceInfo;
+import com.xingchen.common.model.entity.UserInterfaceInfo;
 import com.xingchen.openplatform.service.UserInterfaceInfoService;
 import com.xingchen.openplatform.mapper.UserInterfaceInfoMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
-import java.util.Map;
-import java.util.function.Function;
 
 /**
 * @author xing'chen

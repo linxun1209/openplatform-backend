@@ -1,7 +1,7 @@
 package com.xingchen.openplatform.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xingchen.openplatform.model.entity.InterfaceInfo;
+import com.xingchen.common.model.entity.InterfaceInfo;
 
 /**
  * @author xingchen

@@ -2,7 +2,7 @@ package com.xingchen.openplatform.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xingchen.openplatform.model.entity.InterfaceInfo;
+import com.xingchen.common.model.entity.InterfaceInfo;
 
 /**
  * @author xingchen
