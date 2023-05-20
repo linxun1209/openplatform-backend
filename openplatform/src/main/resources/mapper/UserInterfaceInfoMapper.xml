@@ -20,4 +20,8 @@
         totalNum,status,createTime,
         updateTime,isDelete
     </sql>
+    <select id="listTopInvokeInterfaceInfo" resultType="com.xingchen.common.model.entity.UserInterfaceInfo">
+        select interfaceInfoId, sum(totalNum) as totalNum from user_interface_info group by interfaceInfoId
+        order by totalNum desc limit #{limit};
+    </select>
 </mapper>
