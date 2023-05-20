@@ -296,8 +296,4 @@ public class InterfaceInfoController {
         String usernameByPost = tempClient.getUsernameByPost(user);
         return ResultUtils.success(usernameByPost);
     }
-
-
-
-
 }

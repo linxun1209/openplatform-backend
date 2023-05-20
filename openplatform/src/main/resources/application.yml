@@ -35,8 +35,8 @@ mybatis-plus:
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
 xingchen:
   client:
-    access-key: 107cd40866e70cabe435e3ee593c67e4
-    secret-key: 7e6541c5206a088a5d38dfd930108ff4
+    access-key: f56444d22ce94fcaac24aeb877623fd4
+    secret-key: 949fa2f367f15ca578f6c39340661276
 dubbo:
   application:
     name: dubbo-springboot-demo-provider
