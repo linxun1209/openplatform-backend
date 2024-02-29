@@ -24,4 +24,13 @@
         select interfaceInfoId, sum(totalNum) as totalNum from user_interface_info group by interfaceInfoId
         order by totalNum desc limit #{limit};
     </select>
+
+    <select id="listTopUserInvokeInterfaceInfo"
+            resultType="com.xingchen.common.model.entity.UserInterfaceInfo">
+        select userId, sum(totalNum) as totalNum
+        from user_interface_info
+        where isDelete != 1
+        group by userId
+        order by totalNum desc limit #{limit}
+    </select>
 </mapper>

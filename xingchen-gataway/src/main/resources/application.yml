@@ -6,8 +6,10 @@ spring:
 #      default-filters:
 #        - AddResponseHeader=source, yupi
       routes:
+#        - id: add_request_header_route
+#          uri: http://localhost:8123
         - id: add_request_header_route
-          uri: http://localhost:8123
+          uri: http://localhost:8080
           predicates:
             - Path=/api/**
 

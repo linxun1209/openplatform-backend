@@ -1,10 +1,14 @@
 spring:
   application:
     name: openplatform
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
   # DataSource Config
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://23.224.98.132:3306/platform?useSSL=false&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/platform?useSSL=false&characterEncoding=UTF-8
     username: root
     password: 419520
   mvc:

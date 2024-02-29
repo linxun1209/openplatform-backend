@@ -4,5 +4,5 @@ server:
     context-path: /api
 xingchen:
   client:
-    access-key: e6b7ebd4ded757dc3879d2007ca572e6
-    secret-key: a2eb04eeafffe997191b0a618487ce7b
+    access-key: cd88a1eef4d9781b33535660dc93051d
+    secret-key: e353587633d41b1e9593707ca789ba3b
