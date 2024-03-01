@@ -16,6 +16,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferFactory;
 import org.springframework.core.io.buffer.DataBufferUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -26,10 +27,12 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 全局过滤
@@ -40,6 +43,9 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
     @DubboReference
     private InnerUserService innerUserService;
+
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
 
     @DubboReference
     private InnerInterfaceInfoService innerInterfaceInfoService;
@@ -77,6 +83,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         String timestamp = headers.getFirst("timestamp");
         String sign = headers.getFirst("sign");
         String body = headers.getFirst("body");
+
         // todo 实际情况应该是去数据库中查是否已分配给用户
         User invokeUser = null;
         try {
@@ -90,12 +97,23 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         if (Long.parseLong(nonce) > 10000L) {
             return handleNoAuth(response);
         }
-        // 时间和当前时间不能超过 5 分钟
+
+        /**
+         * 优化.防重放
+         */
+        // 时间和当前时间不能超过 1 分钟
         Long currentTime = System.currentTimeMillis() / 1000;
-        final Long FIVE_MINUTES = 60 * 5L;
-        if ((currentTime - Long.parseLong(timestamp)) >= FIVE_MINUTES) {
+        final Long ONE_MINUTES = 60 * 1L;
+        if ((currentTime - Long.parseLong(timestamp)) >= ONE_MINUTES) {
             return handleNoAuth(response);
         }
+        //nonce不能存在redis，否则视为重放
+        if (redisTemplate.hasKey(nonce)) {
+            return handleNoAuth(response);
+        }
+        // 将nonce和timestamp写入redis
+        // redis缓存时间要略大于时间戳设置的时间,防止59.9秒过了时间戳拦截，刚好缓存有失效
+        redisTemplate.boundValueOps(nonce).set(nonce,2, TimeUnit.MINUTES);
         // 实际情况中是从数据库中查出 secretKey
         String secretKey = invokeUser.getSecretKey();
         String serverSign = SignUtils.genSign(body, secretKey);
@@ -112,7 +130,14 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         if (interfaceInfo == null) {
             return handleNoAuth(response);
         }
-        // todo 是否还有调用次数
+        //查询接口id和用户id
+        Long interfaceInfoId = interfaceInfo.getId();
+        Long invokeUserId = invokeUser.getId();
+        // 是否还有调用次数
+        boolean hasLeftNum = innerUserInterfaceInfoService.invokeLeftNum(interfaceInfoId, invokeUserId);
+        if (!hasLeftNum){
+            return handleNoAuth(response);
+        }
         // 5. 请求转发，调用模拟接口 + 响应日志
        // 6. 响应日志
         // Mono<Void> filter = chain.filter(exchange);
