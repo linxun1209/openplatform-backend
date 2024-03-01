@@ -11,8 +11,6 @@ import com.xingchen.openplatform.mapper.UserInterfaceInfoMapper;
 import com.xingchen.openplatform.service.UserInterfaceInfoService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-
 /**
 * @author xing'chen
 * @description 针对表【user_interface_info(用户调用接口关系)】的数据库操作Service实现
@@ -21,10 +19,6 @@ import javax.annotation.Resource;
 @Service
 public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoMapper, UserInterfaceInfo>
         implements UserInterfaceInfoService {
-
-
-    @Resource
-    UserInterfaceInfoService userInterfaceInfoService;
 
     @Override
     public void validUserInterfaceInfo(UserInterfaceInfo userInterfaceInfo, boolean add) {
