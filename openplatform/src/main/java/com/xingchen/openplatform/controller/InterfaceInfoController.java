@@ -303,8 +303,15 @@ public class InterfaceInfoController {
     }
 
 
-
-
+    /**
+     * 利用反射来进行对多个接口调用
+     * @param reflectionClass
+     * @param methodName
+     * @param parameter
+     * @param accessKey
+     * @param secretKey
+     * @return
+     */
     public Object reflectionInterface(Class<?> reflectionClass, String methodName, String parameter, String accessKey, String secretKey) {
         //构造反射类的实例
         Object result = null;
