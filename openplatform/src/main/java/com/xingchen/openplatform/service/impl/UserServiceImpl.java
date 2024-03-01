@@ -10,6 +10,7 @@ import com.xingchen.openplatform.common.ErrorCode;
 import com.xingchen.openplatform.exception.BusinessException;
 import com.xingchen.openplatform.mapper.UserMapper;
 import com.xingchen.openplatform.service.UserService;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.TimeUnit;
 
@@ -184,13 +186,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      *
      * @param request
      */
+
     @Override
+    @SneakyThrows
     public boolean userLogout(HttpServletRequest request) {
-        if (request.getSession().getAttribute(USER_LOGIN_STATE) == null) {
+        String sessionId = request.getSession().getId();
+        if (redisTemplate.opsForValue().get(USER_LOGIN_STATE + sessionId) == null) {
             throw new BusinessException(ErrorCode.OPERATION_ERROR, "未登录");
         }
-        //移除登录态
-        request.getSession().removeAttribute(USER_LOGIN_STATE);
+        // 移除登录态
+        request.logout();
+        redisTemplate.delete(USER_LOGIN_STATE + sessionId);
         return true;
     }
 }
