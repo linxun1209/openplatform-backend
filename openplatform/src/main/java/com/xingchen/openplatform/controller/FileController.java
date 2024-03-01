@@ -9,7 +9,7 @@ import com.xingchen.openplatform.constant.FileConstant;
 import com.xingchen.openplatform.exception.BusinessException;
 import com.xingchen.openplatform.manager.CosManager;
 import com.xingchen.openplatform.model.dto.file.UploadFileRequest;
-import com.xingchen.openplatform.model.enums.FileUploadBizEnum;
+import com.xingchen.common.model.enums.FileUploadBizEnum;
 import com.xingchen.openplatform.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;

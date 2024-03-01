@@ -1,6 +1,6 @@
 package com.xingchen.openplatform.config;
 
-import com.xingchen.sdkxingchen.ClientConfig;
+import com.qcloud.cos.ClientConfig;
 import lombok.Data;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.auth.BasicCOSCredentials;

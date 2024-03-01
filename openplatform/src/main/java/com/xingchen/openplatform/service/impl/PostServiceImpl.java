@@ -2,10 +2,10 @@ package com.xingchen.openplatform.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xingchen.common.model.entity.Post;
 import com.xingchen.openplatform.common.ErrorCode;
 import com.xingchen.openplatform.exception.BusinessException;
 import com.xingchen.openplatform.mapper.PostMapper;
-import com.xingchen.openplatform.model.entity.Post;
 import com.xingchen.openplatform.model.enums.PostGenderEnum;
 import com.xingchen.openplatform.model.enums.PostReviewStatusEnum;
 import com.xingchen.openplatform.service.PostService;

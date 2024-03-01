@@ -1,7 +1,7 @@
 package com.xingchen.openplatform.model.vo;
 
 
-import com.xingchen.openplatform.model.entity.Post;
+import com.xingchen.common.model.entity.Post;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

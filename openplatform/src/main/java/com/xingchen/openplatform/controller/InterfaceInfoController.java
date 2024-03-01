@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -281,6 +283,8 @@ public class InterfaceInfoController {
         String userRequestParams = interfaceInfoInvokeRequest.getUserRequestParams();
         // 判断是否存在
         InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
+        //数据库中找到请求方法
+        String interfaceInfoName = oldInterfaceInfo.getName();
         if (oldInterfaceInfo == null) {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
         }
@@ -290,10 +294,47 @@ public class InterfaceInfoController {
         User loginUser = userService.getLoginUser(request);
         String accessKey = loginUser.getAccessKey();
         String secretKey = loginUser.getSecretKey();
-        ClientXingchen tempClient = new ClientXingchen(accessKey, secretKey);
-        Gson gson = new Gson();
-        com.xingchen.sdkxingchen.model.User user = gson.fromJson(userRequestParams, com.xingchen.sdkxingchen.model.User.class);
-        String usernameByPost = tempClient.getUsernameByPost(user);
-        return ResultUtils.success(usernameByPost);
+        Object result = reflectionInterface(ClientXingchen.class, interfaceInfoName, userRequestParams, accessKey, secretKey);
+        //网关拦截对异常处理
+        if (result.equals(GateWayErrorCode.FORBIDDEN.getCode())){
+            throw new BusinessException(ErrorCode.FORBIDDEN_ERROR,"调用次数已用尽");
+        }
+        return ResultUtils.success(result);
+    }
+
+
+
+
+    public Object reflectionInterface(Class<?> reflectionClass, String methodName, String parameter, String accessKey, String secretKey) {
+        //构造反射类的实例
+        Object result = null;
+        try {
+            Constructor<?> constructor = reflectionClass.getDeclaredConstructor(String.class, String.class);
+            //获取SDK的实例，同时传入密钥
+            ClientXingchen geapiClient = (ClientXingchen) constructor.newInstance(accessKey, secretKey);
+            //获取SDK中所有的方法
+            Method[] methods = geapiClient.getClass().getMethods();
+            //筛选出调用方法
+            for (Method method : methods) {
+                if (method.getName().equals(methodName)) {
+                    //获取方法参数类型
+                    Class<?>[] parameterTypes = method.getParameterTypes();
+                    Method method1;
+                    if (parameterTypes.length == 0){
+                        method1 = geapiClient.getClass().getMethod(methodName);
+                        return method1.invoke(geapiClient);
+                    }
+                    method1 = geapiClient.getClass().getMethod(methodName, parameterTypes[0]);
+                    //getMethod，多参会考虑重载情况获取方法,前端传来参数是JSON格式转换为String类型
+                    //参数Josn化
+                    Gson gson = new Gson();
+                    Object args = gson.fromJson(parameter, parameterTypes[0]);
+                    return result = method1.invoke(geapiClient, args);
+                }
+            }
+        } catch (Exception e) {
+            log.error("反射调用参数错误",e);
+        }
+        return result;
     }
 }

@@ -2,7 +2,7 @@ package com.xingchen.openplatform.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xingchen.openplatform.model.entity.Post;
+import com.xingchen.common.model.entity.Post;
 
 /**
 * @author yupili

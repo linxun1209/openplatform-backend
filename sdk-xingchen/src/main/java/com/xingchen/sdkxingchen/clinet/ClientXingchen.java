@@ -3,14 +3,13 @@ package com.xingchen.sdkxingchen.clinet;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
-import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
+import com.xingchen.sdkxingchen.model.LoveWords;
 import com.xingchen.sdkxingchen.model.User;
+import com.xingchen.sdkxingchen.utils.SignUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.xingchen.sdkxingchen.utils.SignUtils.genSign;
 
 /**
  * @author xingchen
@@ -31,39 +30,30 @@ public class ClientXingchen {
         this.secretKey = secretKey;
     }
 
-    public String getNameByGet(String name) {
-        //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
-        HashMap<String, Object> paramMap = new HashMap<>();
-        paramMap.put("name", name);
-        String result = HttpUtil.get("http://localhost:8123/api/name/", paramMap);
-        System.out.println(result);
-        return result;
-    }
-
-    public String getNameByPost(String name) {
-        //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
-        HashMap<String, Object> paramMap = new HashMap<>();
-        paramMap.put("name", name);
-        String result = HttpUtil.post("http://localhost:8123/api/name/", paramMap);
-        System.out.println(result);
-        return result;
-    }
-
-    private Map<String, String> getHeaderMap(String body) {
-        Map<String, String> hashMap = new HashMap<>();
-        hashMap.put("accessKey", accessKey);
-        // 一定不能直接发送
-//        hashMap.put("secretKey", secretKey);
-        hashMap.put("nonce", RandomUtil.randomNumbers(4));
-        hashMap.put("body", body);
-        hashMap.put("timestamp", String.valueOf(System.currentTimeMillis() / 1000));
-        hashMap.put("sign", genSign(body, secretKey));
-        return hashMap;
-    }
-
-    public String getUsernameByPost(User user) {
+    public String getNameByGet(User user){
         String json = JSONUtil.toJsonStr(user);
-        HttpResponse httpResponse = HttpRequest.post(GATEWAY_HOST+"/api/name/user")
+        //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
+        HttpResponse httpResponse= HttpRequest.get(GATEWAY_HOST+"/api/get")
+                .addHeaders(getHeaderMap(json))
+                .body(json)
+                .execute();
+        String result = httpResponse.body();
+        return result;
+    }
+    public String getNameByPost(User user){
+        //该方法加了@RequestParam接收JSON
+        String json = JSONUtil.toJsonStr(user);
+        HttpResponse httpResponse= HttpRequest.post(GATEWAY_HOST+"/api/post")
+                .addHeaders(getHeaderMap(json))
+                .body(json)
+                .execute();
+        String result = httpResponse.body();
+        return result;
+    }
+    //模拟接口
+    public String getUserNameByPost(User user) {
+        String json = JSONUtil.toJsonStr(user);
+        HttpResponse httpResponse = HttpRequest.post(GATEWAY_HOST + "/api/user")
                 .addHeaders(getHeaderMap(json))
                 .body(json)
                 .execute();
@@ -72,4 +62,48 @@ public class ClientXingchen {
         System.out.println(result);
         return result;
     }
+
+    //随机情话接口
+    public String getLoveWordsGet(LoveWords loveWords) {
+        String json = JSONUtil.toJsonStr(loveWords);
+        HttpResponse httpResponse = HttpRequest.get(GATEWAY_HOST + "/api/lovewords")
+                .addHeaders(getHeaderMap(json))
+                .body(json)
+                .execute();
+        String result = httpResponse.body();
+        return result;
+    }
+    //随机返回抖音美女视频
+    public String getdyGirlGet() {
+        HttpResponse httpResponse = HttpRequest.get(GATEWAY_HOST + "/api/dygirl")
+                .addHeaders(getHeaderMap(""))
+                .body("")
+                .execute();
+        String result = httpResponse.body();
+        return result;
+    }
+
+    //随机返回爬虫美女视频
+    public String getpcGirlGet() {
+        HttpResponse httpResponse = HttpRequest.get(GATEWAY_HOST + "/api/pcgirl")
+                .addHeaders(getHeaderMap(""))
+                .body("")
+                .execute();
+        String result = httpResponse.body();
+        return result;
+    }
+
+    //添加请求头，发送给网关校验用户的信息
+    private Map<String, String> getHeaderMap(String body) {
+        Map<String,String> map = new HashMap<>();
+        map.put("accessKey",accessKey);
+        //map.put("secretKey",secretKey);
+        map.put("nonce", RandomUtil.randomNumbers(4));
+        map.put("body",body);
+        map.put("timestamp",String.valueOf(System.currentTimeMillis()/1000));
+        map.put("sign",SignUtils.genSign(body,secretKey));
+        return map;
+    }
+
+
 }

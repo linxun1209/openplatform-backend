@@ -2,6 +2,7 @@ package com.xingchen.openplatform.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xingchen.common.model.entity.Post;
 import com.xingchen.common.model.entity.User;
 import com.xingchen.openplatform.annotation.AuthCheck;
 import com.xingchen.openplatform.common.BaseResponse;
@@ -13,7 +14,6 @@ import com.xingchen.openplatform.exception.BusinessException;
 import com.xingchen.openplatform.model.dto.post.PostAddRequest;
 import com.xingchen.openplatform.model.dto.post.PostQueryRequest;
 import com.xingchen.openplatform.model.dto.post.PostUpdateRequest;
-import com.xingchen.openplatform.model.entity.Post;
 import com.xingchen.openplatform.service.PostService;
 import com.xingchen.openplatform.service.UserService;
 import lombok.extern.slf4j.Slf4j;

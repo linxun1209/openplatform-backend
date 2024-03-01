@@ -1,4 +1,4 @@
-package com.xingchen.openplatform.model.enums;
+package com.xingchen.common.model.enums;
 
 import org.apache.commons.lang3.ObjectUtils;
 
