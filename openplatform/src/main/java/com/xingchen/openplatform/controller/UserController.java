@@ -17,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -85,8 +86,14 @@ public class UserController {
      * @param request
      * @return
      */
+    /**
+     * 用户注销
+     *
+     * @param request
+     * @return
+     */
     @PostMapping("/logout")
-    public BaseResponse<Boolean> userLogout(HttpServletRequest request) {
+    public BaseResponse<Boolean> userLogout(HttpServletRequest request) throws ServletException {
         if (request == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
