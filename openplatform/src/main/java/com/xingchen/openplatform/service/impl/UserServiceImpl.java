@@ -5,17 +5,21 @@ import cn.hutool.crypto.digest.DigestUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xingchen.common.model.entity.User;
+import com.xingchen.common.model.vo.UserVO;
 import com.xingchen.openplatform.common.ErrorCode;
 import com.xingchen.openplatform.exception.BusinessException;
 import com.xingchen.openplatform.mapper.UserMapper;
 import com.xingchen.openplatform.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.TimeUnit;
 
 import static com.xingchen.openplatform.constant.UserConstant.ADMIN_ROLE;
 import static com.xingchen.openplatform.constant.UserConstant.USER_LOGIN_STATE;
@@ -37,6 +41,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      * 盐值，混淆密码
      */
     private static final String SALT = "xingchen";
+
+
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
 
 
     /**
@@ -98,7 +106,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      */
 
     @Override
-    public User userLogin(String userAccount, String userPassword, HttpServletRequest request) {
+    public UserVO userLogin(String userAccount, String userPassword, HttpServletRequest request) {
         // 1. 校验
         if (StringUtils.isAnyBlank(userAccount, userPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数为空");
@@ -121,9 +129,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             log.info("user login failed, userAccount cannot match userPassword");
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户不存在或密码错误");
         }
+
         // 3. 记录用户的登录态
-        request.getSession().setAttribute(USER_LOGIN_STATE, user);
-        return user;
+        String sessionId = request.getSession().getId();
+        redisTemplate.opsForValue().set(USER_LOGIN_STATE + sessionId, user);
+        redisTemplate.expire(USER_LOGIN_STATE + sessionId, 1, TimeUnit.DAYS);
+
+        // 4、前端返回用户
+        UserVO userVO = new UserVO();
+        BeanUtils.copyProperties(user, userVO);
+
+        return userVO;
     }
 
     /**

@@ -4,13 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.xingchen.common.model.entity.User;
+import com.xingchen.common.model.vo.UserVO;
 import com.xingchen.openplatform.common.BaseResponse;
 import com.xingchen.openplatform.common.DeleteRequest;
 import com.xingchen.openplatform.common.ErrorCode;
 import com.xingchen.openplatform.common.ResultUtils;
 import com.xingchen.openplatform.exception.BusinessException;
 import com.xingchen.openplatform.model.dto.user.*;
-import com.xingchen.openplatform.model.vo.UserVO;
 import com.xingchen.openplatform.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -66,7 +66,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/login")
-    public BaseResponse<User> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
+    public BaseResponse<UserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         if (userLoginRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -75,7 +75,7 @@ public class UserController {
         if (StringUtils.isAnyBlank(userAccount, userPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = userService.userLogin(userAccount, userPassword, request);
+        UserVO user = userService.userLogin(userAccount, userPassword, request);
         return ResultUtils.success(user);
     }
 
